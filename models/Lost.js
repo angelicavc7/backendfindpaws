@@ -10,24 +10,44 @@ Lost.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    name: {
+    firstName: {
+      types: DataTypes.STRING,
+      allowNull: false,
+    },
+    lastName: {
+      types: DataTypes.STRING,
+      allowNull: false,
+    },
+    phoneNumber: {
+      type: DataTypes.DECIMAL,
+      allowNull: false,
+    },
+    email: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    category: {
+    petName: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    last_location: {
+    petType: {
       type: DataTypes.STRING,
+      allowNull: false,
+    },
+    petDescription: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    lastSeen: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    dateLost: {
+      type: DataTypes.DATE,
       allowNull: false,
     },
     reward: {
       type: DataTypes.DECIMAL,
-      allowNull: false,
-    },
-    description: {
-      type: DataTypes.STRING,
       allowNull: false,
     },
   },
