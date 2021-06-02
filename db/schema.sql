@@ -1,2 +1,2 @@
-DROP DATABASE IF EXISTS pawfinder_db
-CREATE DATABASE pawfinder_db
+DROP DATABASE IF EXISTS pawfinder_db;
+CREATE DATABASE pawfinder_db;

@@ -1,29 +1,13 @@
 const mysql = require("mysql");
+const sequelize = require("./config/connection");
+const express = require("express");
 
-const connection = mysql.createConnection({
-  host: "localhost",
+const app = express();
+const PORT = process.env.PORT || 3001;
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-  // Your port; if not 3306
-  port: 3306,
-
-  // Your username
-  user: "root",
-
-  // Be sure to update with your own MySQL password!
-  password: "password",
-  database: "paw_finder",
-});
-
-const afterConnection = () => {
-  connection.query("SELECT * FROM products", (err, res) => {
-    if (err) throw err;
-    console.log(res);
-    connection.end();
-  });
-};
-
-connection.connect((err) => {
-  if (err) throw err;
-  console.log(`connected as id ${connection.threadId}`);
-  afterConnection();
+app.use(express.static("public"));
+sequelize.sync({ force: false }).then(() => {
+  app.listen(PORT, () => console.log("Now listening"));
 });
