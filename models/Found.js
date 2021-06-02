@@ -10,27 +10,27 @@ Found.int(
       primaryKey: true,
       autoIncrement: true,
     },
-    FirstName: {
+    firstName: {
       types: DataTypes.STRING,
       allowNull: false,
     },
-    LastName: {
+    lastName: {
       types: DataTypes.STRING,
       allowNull: false,
     },
-    PhoneNumber: {
+    phoneNumber: {
       type: DataTypes.DECIMAL,
       allowNull: false,
     },
     email: {
-      type: DataTypes.DECIMAL,
-      allowNull: false,
-    },
-    PetType: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    PetDescription: {
+    petType: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    petDescription: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -38,11 +38,11 @@ Found.int(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    DateFound: {
+    dateFound: {
       type: DataTypes.DATE,
       allowNull: false,
     },
-    LastSeen: {
+    lastSeen: {
       type: DataTypes.STRING,
       allowNull: false,
     },
