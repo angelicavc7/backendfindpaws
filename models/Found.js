@@ -10,11 +10,27 @@ Found.int(
       primaryKey: true,
       autoIncrement: true,
     },
-    PetDescription: {
+    FirstName: {
+      types: DataTypes.STRING,
+      allowNull: false,
+    },
+    LastName: {
+      types: DataTypes.STRING,
+      allowNull: false,
+    },
+    PhoneNumber: {
+      type: DataTypes.DECIMAL,
+      allowNull: false,
+    },
+    email: {
+      type: DataTypes.DECIMAL,
+      allowNull: false,
+    },
+    PetType: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    category: {
+    PetDescription: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -22,19 +38,19 @@ Found.int(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    email: {
-      type: DataTypes.DECIMAL,
+    DateFound: {
+      type: DataTypes.DATE,
       allowNull: false,
     },
-    PhoneNumber: {
-      type: DataTypes.DECIMAL,
+    LastSeen: {
+      type: DataTypes.STRING,
       allowNull: false,
     },
   },
   {
     sequelize,
     freezeTableName: true,
-    modelName: "Lost",
+    modelName: "Found",
   }
 );
 module.exports = Found;
