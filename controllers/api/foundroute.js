@@ -36,7 +36,7 @@ router.delete("/:id", async (req, res) => {
     });
 
     if (!foundData) {
-      res.status(404).json({ message: "No Pet found with that id!" });
+      res.status(404).json({ message: "No item found with that id!" });
       return;
     }
     res.status(200).json(foundData);
