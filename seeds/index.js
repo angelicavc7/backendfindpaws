@@ -1,21 +1,21 @@
-const seedSearch = require('./search-seeds');
-const seedLost = require('./lost-seeds');
-const seedFound = require('./found-seeds');
-
 const sequelize = require('../config/connection');
+const lostData = require('./petLost.json');
+const foundData = require('./petFound.json');
+const { Lost, Found } = require('../models')
+
+
 
 const seedAll = async () => {
   await sequelize.sync({ force: true });
   console.log('\n----- DATABASE SYNCED -----\n');
-  
-  await seedSearch();
-  console.log('\n----- SEARCH SEEDED -----\n');
+  console.log(lostData)
+  console.log(foundData)
 
-  await seedLost();
-  console.log('\n----- LOST SEEDED -----\n');
+  await Lost.bulkCreate(lostData);
+  // console.log('\n----- LOST SEEDED -----\n');
 
-  await seedFound();
-  console.log('\n----- FOUND SEEDED -----\n');
+  // await Found.bulkCreate(foundData);
+  // console.log('\n----- FOUND SEEDED -----\n');
 
   process.exit(0);
 };
