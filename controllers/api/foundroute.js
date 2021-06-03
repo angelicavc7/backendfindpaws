@@ -1,47 +1,103 @@
 const router = require("express").router();
-const Found = require("../../models/Found");
-
-router.post("/", async (req, res) => {
-  try {
-    const foundData = await Found.create(req.body);
-    res.status(200).json(foundData);
-  } catch (err) {
-    restore.status(500).json(err);
-  }
+const { Found } = require("../models");
+//gets all forms for pets
+router.get("/", (req, res) => {
+  Found.findAll()
+    .then((foundPets) => {
+      res.json(foundPets);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({ message: "error", err });
+    });
 });
-
-router.put("/:id", async (req, res) => {
-  try {
-    const updatePet = await Form.update(req.body, {
+//finds one form by its specific id
+router.get("/:id", (req, res) => {
+  Found.findOne({
+    where: {
+      id: req.params.id,
+    },
+  })
+    .then((foundPet) => {
+      res.json(foundPet);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({ message: "error", err });
+    });
+});
+//creates a new form for user
+router.post("/", (req, res) => {
+  Found.create({
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    phoneNumber: req.body.phoneNumber,
+    email: req.user.email,
+    petType: req.body.petType,
+    petDescription: req.body.petDescription,
+    circumstances: req.body.circumstances,
+    dateFound: req.body.dateFound,
+    lastSeen: req.body.lastSeen,
+  })
+    .then((foundPet) => {
+      res.json(foundPet);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({ message: "error", err });
+    });
+});
+//edits a form
+router.put("/:id", (req, res) => {
+  Found.findOne({
+    where: {
+      id: req.params.id,
+    },
+  }).then(() => {
+    Found.update(
+      {
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        phoneNumber: req.body.phoneNumber,
+        email: req.user.email,
+        petType: req.body.petType,
+        petDescription: req.body.petDescription,
+        circumstances: req.body.circumstances,
+        dateFound: req.body.dateFound,
+        lastSeen: req.body.lastSeen,
+      },
+      {
+        where: {
+          id: req.params.id,
+        },
+      }
+    )
+      .then((editFoundPet) => {
+        res.json(editFoundPet);
+      })
+      .catch((err) => {
+        res.status(500).json({ message: "error", err });
+      });
+  });
+});
+//deletes a form
+router.delete("/:id", (req, res) => {
+  Found.findOne({
+    where: {
+      id: req.params.id,
+    },
+  }).then(() => {
+    Found.destroy({
       where: {
         id: req.params.id,
       },
-    });
-
-    if (!updatePet) {
-      res.status(400).json({ message: "No such pet" });
-      return;
-    }
-    res.status(200).json(updatePet);
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-router.delete("/:id", async (req, res) => {
-  try {
-    const foundData = await Found.destroy({
-      where: {
-        id: req.params.id,
-      },
-    });
-
-    if (!foundData) {
-      res.status(404).json({ message: "No item found with that id!" });
-      return;
-    }
-    res.status(200).json(foundData);
-  } catch (err) {
-    res.status(500).json(err);
-  }
+    })
+      .then((delFoundPet) => {
+        res.json(delFoundPet);
+      })
+      .catch((err) => {
+        res.status(500).json({ message: "error", err });
+      });
+  });
 });
 module.exports = router;
