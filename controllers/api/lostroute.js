@@ -1,48 +1,52 @@
-const router = require("express").router();
-const Lost = require("../../models/Lost");
-
-router.post("/", async (req, res) => {
-  try {
-    const lostData = await Lost.create(req.body);
-    res.status(200).json(lostData);
-  } catch (err) {
-    restore.status(500).json(err);
-  }
-});
-
-router.put("/:id", async (req, res) => {
-  try {
-    const updatePet = await Form.update(req.body, {
-      where: {
-        id: req.params.id,
-      },
+const express = require("express");
+const router = express.Router();
+const { Lost } = require("../../models");
+//gets all forms
+router.get("/", (req, res) => {
+  Lost.findAll()
+    .then((LostPets) => {
+      res.json(LostPets);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({ message: "error", err });
     });
-
-    if (!updatePet) {
-      res.status(400).json({ message: "No such pet" });
-      return;
-    }
-    res.status(200).json(updatePet);
-  } catch (err) {
-    res.status(500).json(err);
-  }
 });
-
-router.delete("/:id", async (req, res) => {
-  try {
-    const lostData = await Lost.destroy({
-      where: {
-        id: req.params.id,
-      },
+//finds one form by its specific id
+router.get("/:id", (req, res) => {
+  Lost.findOne({
+    where: {
+      id: req.params.id,
+    },
+  })
+    .then((LostPet) => {
+      res.json(LostPet);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({ message: "error", err });
     });
-
-    if (!lostData) {
-      res.status(404).json({ message: "No item found with that id!" });
-      return;
-    }
-    res.status(200).json(lostData);
-  } catch (err) {
-    res.status(500).json(err);
-  }
+});
+//creates a new form for user
+router.post("/", (req, res) => {
+  Lost.create({
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    phoneNumber: req.body.phoneNumber,
+    email: req.body.email,
+    petName: req.body.petName,
+    petType: req.body.petType,
+    petDescription: req.body.petDescription,
+    lastSeen: req.body.lastSeen,
+    dateLost: req.body.dateLost,
+    reward: req.body.reward,
+  })
+    .then((LostPet) => {
+      res.json(LostPet);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({ message: "error", err });
+    });
 });
 module.exports = router;
