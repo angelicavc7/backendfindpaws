@@ -1,5 +1,6 @@
-const router = require("express").router();
-const { Found } = require("../models");
+const express = require("express");
+const router = express.Router();
+const { Found } = require("../../models");
 //gets all forms for pets
 router.get("/", (req, res) => {
   Found.findAll()
@@ -32,7 +33,7 @@ router.post("/", (req, res) => {
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     phoneNumber: req.body.phoneNumber,
-    email: req.user.email,
+    email: req.body.email,
     petType: req.body.petType,
     petDescription: req.body.petDescription,
     circumstances: req.body.circumstances,
@@ -47,57 +48,5 @@ router.post("/", (req, res) => {
       res.status(500).json({ message: "error", err });
     });
 });
-//edits a form
-router.put("/:id", (req, res) => {
-  Found.findOne({
-    where: {
-      id: req.params.id,
-    },
-  }).then(() => {
-    Found.update(
-      {
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        phoneNumber: req.body.phoneNumber,
-        email: req.user.email,
-        petType: req.body.petType,
-        petDescription: req.body.petDescription,
-        circumstances: req.body.circumstances,
-        dateFound: req.body.dateFound,
-        lastSeen: req.body.lastSeen,
-      },
-      {
-        where: {
-          id: req.params.id,
-        },
-      }
-    )
-      .then((editFoundPet) => {
-        res.json(editFoundPet);
-      })
-      .catch((err) => {
-        res.status(500).json({ message: "error", err });
-      });
-  });
-});
-//deletes a form
-router.delete("/:id", (req, res) => {
-  Found.findOne({
-    where: {
-      id: req.params.id,
-    },
-  }).then(() => {
-    Found.destroy({
-      where: {
-        id: req.params.id,
-      },
-    })
-      .then((delFoundPet) => {
-        res.json(delFoundPet);
-      })
-      .catch((err) => {
-        res.status(500).json({ message: "error", err });
-      });
-  });
-});
+
 module.exports = router;
