@@ -10,7 +10,7 @@ const seedAll = async () => {
   await Lost.bulkCreate(lostData);
   // console.log('\n----- LOST SEEDED -----\n');
 
-  // await Found.bulkCreate(foundData);
+  await Found.bulkCreate(foundData);
   // console.log('\n----- FOUND SEEDED -----\n');
 
   process.exit(0);
