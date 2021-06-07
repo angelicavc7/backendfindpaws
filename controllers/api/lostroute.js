@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { Lost } = require("../../models");
 //gets all forms
+
 router.get("/", (req, res) => {
   Lost.findAll()
     .then((LostPets) => {
@@ -29,6 +30,7 @@ router.get("/:id", (req, res) => {
 });
 //creates a new form for user
 router.post("/", (req, res) => {
+  console.log(req.body)
   Lost.create({
     firstName: req.body.firstName,
     lastName: req.body.lastName,
