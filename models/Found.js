@@ -12,39 +12,39 @@ Found.init(
     },
     firstName: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     lastName: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     phoneNumber: {
       type: DataTypes.DECIMAL,
-      allowNull: false,
+      allowNull: true,
     },
     email: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     petType: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     petDescription: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     circumstances: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     dateFound: {
-      type: DataTypes.DATE,
-      allowNull: false,
+      type: DataTypes.STRING,
+      allowNull: true,
     },
     lastSeen: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
   },
   {

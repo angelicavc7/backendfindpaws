@@ -1,14 +1,13 @@
-  
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const foundRoutes = require("./api/foundroute");
-const lostRoutes = require("./api/lostroute")
+const foundRoutes = require("./api/foundRoute");
+const lostRoutes = require("./api/lostRoute");
 
-router.get('/', (req, res) => {
-    res.send('Welcome to findpaws');
-})
-router.use("/api/found", foundRoutes)
-router.use("/api/lost", lostRoutes)
+router.get("/", (req, res) => {
+  res.send("Welcome to findpaws");
+});
+router.use("/api/found", foundRoutes);
+router.use("/api/lost", lostRoutes);
 
 module.exports = router;
 
@@ -20,8 +19,7 @@ module.exports = router;
 // how do we make it possible for the user to delete and add to their own post and have an update button that has found pet and deletes it from the db?
 // How can we add a carousel to working app in react?
 
-
-// TODOS: 
+// TODOS:
 // DEPLPOY APP TO HEROKU
 // MAKE SURE APP IS RUNNING
 // FINISH ROUTES

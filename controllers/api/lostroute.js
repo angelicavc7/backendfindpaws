@@ -30,7 +30,7 @@ router.get("/:id", (req, res) => {
 });
 //creates a new form for user
 router.post("/", (req, res) => {
-  console.log(req.body)
+  // console.log(req.body);
   Lost.create({
     firstName: req.body.firstName,
     lastName: req.body.lastName,
