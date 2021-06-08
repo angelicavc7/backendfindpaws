@@ -12,43 +12,43 @@ Lost.init(
     },
     firstName: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     lastName: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     phoneNumber: {
       type: DataTypes.DECIMAL,
-      allowNull: false,
+      allowNull: true,
     },
     email: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     petName: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     petType: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     petDescription: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     lastSeen: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     dateLost: {
-      type: DataTypes.DATE,
-      allowNull: false,
+      type: DataTypes.STRING,
+      allowNull: true,
     },
     reward: {
       type: DataTypes.DECIMAL,
-      allowNull: false,
+      allowNull: true,
     },
   },
   {
