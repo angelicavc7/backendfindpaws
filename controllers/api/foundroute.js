@@ -87,14 +87,18 @@ router.delete("/:id", (req, res) => {
     where: {
       id: req.params.id,
     },
-  })
-    .then((FoundPet) => {
-      res.json(FoundPet);
+  }).then(() => {
+    Found.destroy({
+      where: {
+        id: req.params.id,
+      },
     })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json({ message: "error", err });
-    });
+      .then((deleteFoundPet) => {
+        res.json(deleteFoundPet);
+      })
+      .catch((err) => {
+        res.status(500).json({ message: "error", err });
+      });
+  });
 });
-
 module.exports = router;
