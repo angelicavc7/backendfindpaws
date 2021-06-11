@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { Lost } = require("../../models");
+const { Lost } = require("../../../models");
 //gets all forms
 
 router.get("/", (req, res) => {

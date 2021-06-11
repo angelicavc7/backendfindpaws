@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { Found, Lost } = require("../../models");
+const { Found } = require("../../../models");
 //gets all forms for pets
 router.get("/", (req, res) => {
   Found.findAll()
