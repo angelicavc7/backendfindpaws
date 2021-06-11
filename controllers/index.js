@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const foundRoutes = require("./api/foundRoute");
-const lostRoutes = require("./api/lostRoute");
+const foundRoutes = require("./api/foundRoute.js");
+const lostRoutes = require("./api/lostRoute.js");
 
 router.get("/", (req, res) => {
   res.send("Welcome to findpaws");
